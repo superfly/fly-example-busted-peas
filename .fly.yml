@@ -1,1 +1,3 @@
-app_id: super-fly/busted-peas
+app_id: super-fly/busted-pods
+config:
+  cache_version: 0

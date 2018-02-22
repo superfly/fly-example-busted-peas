@@ -1,6 +1,6 @@
-# Fly Edge App Example - Busted Peas
+# Fly Edge App Example - Busted Pods
 
-Busted is a toy example of caching content using Fly and implementing an app-wide cache purge.
+Busted Pods is a toy example of caching content using Fly and implementing an app-wide cache invalidation.
 
 ## Installing
 
@@ -8,12 +8,12 @@ Busted is a toy example of caching content using Fly and implementing an app-wid
 
 2. Clone this git repo.
 ```
-git clone https://github.com/superfly/fly-example-busted-peas.git
+git clone https://github.com/superfly/fly-example-busted-pods.git
 ```
 
 3. Install dependencies
 ```
-cd fly-example-busted-peas && npm install
+cd fly-example-busted-pods && npm install
 ```
 
 4. Start the local server
@@ -57,5 +57,8 @@ fly hostnames add my-fly-app.hostname.com
 
 5. Go to your DNS provider and add a CNAME for _my-fly-app.hostname.com_ to
 point to **beta.edge.fly.io**
+
+6. Bump the `cache_version` number in `.fly.yml` file and `fly deploy` to invalidate
+all cached content.
 
 

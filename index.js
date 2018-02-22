@@ -1,14 +1,17 @@
-const cacheKey = "/"
-
 fly.http.respondWith(function(request) {
 
   const respFn = async () => {
     return message()
   }
 
+  const cacheKey = versionKey(new URL(request.url).pathname)
   return tryCache(cacheKey, respFn)
 })
 
+/*
+ * Dynamic message example that adds timestamp so it's easy to see when there's a
+ * cache hit vs cache miss.
+ */
 function message() {
   return `Hello! We only serve whirled peas. Generated: ${new Date().toString()}`
 }
@@ -94,6 +97,13 @@ async function tryCache(key, fillFn) {
 
 }
 
-async function tryCache2(req) {
-  //let resp = await
+/*
+ * The best way to purge the entire cache for your app is to change the every single key
+ * used for look up. Here, we can pair with the app config that can be committed to your
+ * .fly.yml file and deployed to Fly Edge Servers
+ */
+function versionKey(key) {
+  const cacheVersion = app.config.cache_version
+
+  return `${cacheVersion}:${key}`
 }
